@@ -7,6 +7,8 @@
 	<a id = "map-link" style="font-size:  48px" target="_blank"></a>
 	<script type="text/javascript">
 		function geoFindMe() {
+			console.log("geoFindMe");
+
 			const status = document.querySelector('#status');
 			const mapLink = document.querySelector('#map-link');
 		
@@ -14,6 +16,7 @@
 			mapLink.textContent = '';
 		
 			function success(position) {
+				console.log("success:" + position);
 				const latitude  = position.coords.latitude;
 				const longitude = position.coords.longitude;
 		
@@ -22,13 +25,16 @@
 				mapLink.textContent = `Latitude: ${latitude} °, Longitude: ${longitude} °`;
 			  }
 		
-			function error() {
+			function error(error) {
+				console.log("error:" + error);
 				status.textContent = 'Unable to retrieve your location';
 			}
 		
 			if(!navigator.geolocation) {
+				console.log("not supported by browser");
 				status.textContent = 'Geolocation is not supported by your browser';
 			} else {
+				console.log("loading...");
 				status.textContent = 'Locating…';
 				navigator.geolocation.getCurrentPosition(success, error);
 			}
