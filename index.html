@@ -16,7 +16,7 @@
 			mapLink.textContent = '';
 		
 			function success(position) {
-				console.log("success:" + position);
+				console.log("success - lat: " + position.coords.latitude + " long: " + position.coords.longitude);
 				const latitude  = position.coords.latitude;
 				const longitude = position.coords.longitude;
 		
@@ -26,7 +26,7 @@
 			  }
 		
 			function error(error) {
-				console.log("error:" + error);
+				console.log("error: " + error.message + "(" + error.code + ")");
 				status.textContent = 'Unable to retrieve your location';
 			}
 		
