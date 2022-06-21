@@ -3,8 +3,8 @@
 </head>
 <body>
 	<button id = "find-me" style="width: 400px; height: 200px;">Show my location</button><br/>
-	<p id = "status" style="font-size: 48px;"></p>
-	<a id = "map-link" style="font-size:  48px" target="_blank"></a>
+	<p id = "status" style="font-size: 32px;"></p>
+	<a id = "map-link" style="font-size: 32px" target="_blank"></a>
 	<script type="text/javascript">
 		function geoFindMe() {
 			console.log("geoFindMe");
@@ -16,26 +16,28 @@
 			mapLink.textContent = '';
 		
 			function success(position) {
-				console.log("success - lat: " + position.coords.latitude + " long: " + position.coords.longitude);
 				const latitude  = position.coords.latitude;
 				const longitude = position.coords.longitude;
+				const successStr = `success: ${position} - coords.latitude: ${latitude}, coords.longitude: ${longitude}`
+				console.log(successStr);
 		
 				status.textContent = '';
 				mapLink.href = `https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`;
-				mapLink.textContent = `Latitude: ${latitude} °, Longitude: ${longitude} °`;
+				mapLink.textContent = successStr;
 			  }
 		
 			function error(error) {
-				console.log("error: " + error.message + "(" + error.code + ")");
-				status.textContent = 'Unable to retrieve your location';
+				const errorStr = `error: ${error} - ${error.message} (${error.code})`;
+				console.error(errorStr);
+				status.textContent = errorStr;
 			}
 		
 			if(!navigator.geolocation) {
 				console.log("not supported by browser");
-				status.textContent = 'Geolocation is not supported by your browser';
+				status.textContent = `Geolocation is not supported by your browser`;
 			} else {
 				console.log("loading...");
-				status.textContent = 'Locating…';
+				status.textContent = `Locating...`;
 				navigator.geolocation.getCurrentPosition(success, error);
 			}
 		}
