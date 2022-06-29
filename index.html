@@ -29,7 +29,7 @@
 		Input (with type="image" + capture="none") <input style="width: 200px; height: 50px" type="file" capture="none" accept="image/*" />
 	</p>
 	<p>
-		<button title="file access" onclick="window.showOpenFilePicker()" />
+		<button id = "find-me-2" title="file access" />
 	</p>
 	<script type="text/javascript">
 		function geoFindMe() {
@@ -67,8 +67,14 @@
 				navigator.geolocation.getCurrentPosition(success, error);
 			}
 		}
+
+		function openFile() {
+			const selectedFiles = await window.showOpenFilePicker();
+			console.log("loaselectedFiles:" + selectedFiles);
+		}
 		
 		document.querySelector('#find-me').addEventListener('click', geoFindMe);
+		document.querySelector('#find-me-2').addEventListener('click', openFile);
 		
 	</script>
 </body>
