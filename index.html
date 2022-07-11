@@ -89,7 +89,7 @@
 
 		async function openFile() {
 			// open file picker
-			[fileHandle] = await this.showOpenFilePicker(pickerOpts);
+			[fileHandle] = await window.showOpenFilePicker(pickerOpts);
 			console.log("fileHandle:" + fileHandle);
 
 			// get file contents
