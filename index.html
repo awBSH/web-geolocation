@@ -74,9 +74,27 @@
 			}
 		}
 
+		const pickerOpts = {
+			types: [
+				{
+					description: 'Images',
+					accept: {
+						'image/*': ['.png', '.gif', '.jpeg', '.jpg']
+					}
+				},
+			],
+			excludeAcceptAllOption: true,
+			multiple: false
+		};
+
 		function openFile() {
-			const selectedFiles = this.showOpenFilePicker();
-			console.log("loaselectedFiles:" + selectedFiles);
+			// open file picker
+			[fileHandle] = await this.showOpenFilePicker(pickerOpts);
+			console.log("fileHandle:" + fileHandle);
+
+			// get file contents
+			const fileData = await fileHandle.getFile();
+			console.log("fileData:" + fileData);
 		}
 		
 		document.querySelector('#find-me').addEventListener('click', geoFindMe);
