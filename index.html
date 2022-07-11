@@ -87,7 +87,7 @@
 			multiple: false
 		};
 
-		function openFile() {
+		async function openFile() {
 			// open file picker
 			[fileHandle] = await this.showOpenFilePicker(pickerOpts);
 			console.log("fileHandle:" + fileHandle);
